@@ -55,8 +55,8 @@ public class WelcomeController {
         nodeCapacitySettings.add(capacityWeekData7);
 
         simulationContent = new SimulationContent();
-        simulationContent.setCreatedBy("createdBy");
-        simulationContent.setSimulationId("simulationId");
+        simulationContent.setCreatedBy("Lavanya Shivkumar");
+        simulationContent.setSimulationId("0000000001");
         simulationContent.setCreatedDate(new Date());
         simulationContent.setStartDate(new Date());
         simulationContent.setEndDate(new Date());

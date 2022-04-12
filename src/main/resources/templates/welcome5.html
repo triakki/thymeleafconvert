@@ -90,8 +90,6 @@ body {
 	width: 100%;
 }
 
-
-
 body {
 	-webkit-text-size-adjust: 100%;
 }
@@ -171,41 +169,40 @@ body {
 .table tr:last-child th:last-child {
 	border-top-right-radius: 5px;
 }
-
 </style>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
-	<table
-		style="background-color: #17233D; height: 56px; width: 100%; border-spacing: 0px; border: 0px; box-sizing: 0px;"
-		cellpadding="0" cellspacing="0" border="0" height="100%" width="100%">
-		<tr>
-			<td style="padding: 6px 0px 5px 32px;"><img height="41px"
-				width="60px" src='' /></td>
-			<td style="padding: 12px 32px 12px 0px; text-align: right;"
-				align="right"><img height="28px" width="60px" src='' /></td>
-		</tr>
-	</table>
-	<table
-		style="width: 100%; border-spacing: 0px; border: 0px; box-sizing: 0px; padding: 2px;">
-		<tr style="">
-			<td style="width: 9.7%;"></td>
-			<td>
-				<p style="font-size: 30px; font-weight: bold;"
-					th:text="'Dear '+${SimulationContent.createdBy}+','"></p>
-			</td>
-			<td style="width: 9.7%;"></td>
-		</tr>
-		<tr>
-			<td style="width: 9.7%;"></td>
-			<td>
-				<p style="font-size: 18px;">
-					We have completed your request for this simulation. <br>
-				</p>
-			</td>
-		</tr>
-	</table>
+<table
+	style="background-color: #17233D; height: 56px; width: 100%; border-spacing: 0px; border: 0px; box-sizing: 0px;"
+	cellpadding="0" cellspacing="0" border="0" height="100%" width="100%">
+	<tr>
+		<td style="padding: 6px 0px 5px 32px;"><img height="41px"
+			width="60px" src='' /></td>
+		<td style="padding: 12px 32px 12px 0px; text-align: right;"
+			align="right"><img height="28px" width="60px" src='' /></td>
+	</tr>
+</table>
+<table
+	style="width: 100%; border-spacing: 0px; border: 0px; box-sizing: 0px; padding: 2px;">
+	<tr style="">
+		<td style="width: 9.7%;"></td>
+		<td>
+			<p style="font-size: 30px; font-weight: bold;"
+				th:text="'Dear '+${SimulationContent.createdBy}+','"></p>
+		</td>
+		<td style="width: 9.7%;"></td>
+	</tr>
+	<tr>
+		<td style="width: 9.7%;"></td>
+		<td>
+			<p style="font-size: 18px;">
+				We have completed your request for this simulation. <br>
+			</p>
+		</td>
+	</tr>
+</table>
 
 <div class="tabset">
 	<!-- Tab 1 -->
@@ -313,37 +310,193 @@ body {
 			</table>
 		</section>
 		<section id="rauchbier" class="tab-panel">
-			<h2>6B. Rauchbier</h2>
-			<p>
-				<strong>Overall Impression:</strong> An elegant, malty German amber
-				lager with a balanced, complementary beechwood smoke character.
-				Toasty-rich malt in aroma and flavor, restrained bitterness, low to
-				high smoke flavor, clean fermentation profile, and an attenuated
-				finish are characteristic.
-			</p>
-			<p>
-				<strong>History:</strong> A historical specialty of the city of
-				Bamberg, in the Franconian region of Bavaria in Germany.
-				Beechwood-smoked malt is used to make a Märzen-style amber lager.
-				The smoke character of the malt varies by maltster; some breweries
-				produce their own smoked malt (rauchmalz).
-			</p>
+			<table style="width: 100%;">
+				<tr>
+					<td colspan="2" height="100%" width="100%" bgcolor="#ffffff"
+						valign=center align=center
+						style="font-size: 14px; color: #555555;">
+						<div>
+							<table style="height: 10px"></table>
+							<table style="width: 100%;">
+								<tr style="">
+									<td class="topRowData">
+										<p style="padding-left: 5px; height: 15px;">
+											<b>Simulation ID2:</b>
+										</p> <span style="font-size: 16px; text-align: center;"
+										th:text="${SimulationContent.simulationId}"></span>
+									</td>
+									<td class="topRowData">
+										<p style="height: 15px; padding-left: 5px;">
+											<b>Run By2:</b>
+										</p> <span style="font-size: 16px; text-align: center;"
+										th:text="${SimulationContent.createdBy}"></span>
+									</td>
+									<td class="topRowData">
+										<p style="height: 15px; padding-left: 5px;">
+											<b>Date of Simulation2:</b>
+										</p> <span style="font-size: 16px; vertical-align: center;"
+										th:text="${SimulationContent.createdDate}"></span>
+									</td>
+									<td class="topRowData">
+										<p style="height: 15px; padding-left: 5px;">
+											<b>Date Range2:</b>
+										</p> <span style="font-size: 16px; vertical-align: center;"
+										th:text=" ${SimulationContent.startDate} +' - '+ ${SimulationContent.endDate}"></span>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<table style="height: 10px"></table>
+						<table style="width: 100%;" class="table">
+							<tr>
+								<th>Node</th>
+								<th>Previous Values</th>
+								<th>New Values</th>
+							</tr>
+							<tbody>
+								<tr
+									th:each="capacitySimulationUI,iStat : ${SimulationUIContent}">
+									<td
+										style="border-bottom: 1px solid #DADCE0; border-left: 1px solid #DADCE0;"
+										th:text="${capacitySimulationUI.nodeId}"></td>
+									<td style="border-bottom: 1px solid #DADCE0;">
+										<p
+											th:each="simu :  ${capacitySimulationUI.nodeCapacitySettings}">
+											<span th:text="${simu.capacityWeek}"></span> <span
+												th:text="${simu.capacity}"></span>
+										</p>
+									</td>
+									<td
+										style="border-bottom: 1px solid #DADCE0; border-right: 1px solid #DADCE0;">
+										<p
+											th:each="simu :  ${SimulationUIContent2[iStat.index].nodeCapacitySettings}">
+											<span th:text="${simu.capacityWeek}"></span> <span
+												th:text="${simu.capacity}"></span>
+										</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<table
+							style="width: 100%; border-spacing: 0px; border: 0px; box-sizing: 0px; padding: 2px;">
+							<td
+								style="padding: 0px 2px; border: 1px solid #DADCE0; border-radius: 5px;">
+								<div style="width: 100%; height: 120px; box-sizing: border-box;">
+									<table
+										style="width: 100%; height: 120px; border-spacing: 0px; box-sizing: border-box;"
+										cellpadding="0" cellspacing="0">
+										<tr>
+											<td style="padding: 29px 0px 29px 36px; max-width: 50%;">
+												<p>Thank You</p>
+												<p>Your NodeStar Administrator</p>
+											</td>
+											<td
+												style="padding: 24px 36px 23px 0px; text-align: right; max-width: 50%;"
+												align="right"><img src='' /></td>
+										</tr>
+									</table>
+								</div>
+							</td>
+							</td>
+							</tr>
+						</table>
+			</table>
 		</section>
 		<section id="dunkles" class="tab-panel">
-			<table cellpadding="0" cellspacing="0" height="100%" width="100%">
+			<table style="width: 100%;">
 				<tr>
-					<td colspan="2" height="1500" width="100%" bgcolor="#eeeccc"
+					<td colspan="2" height="100%" width="100%" bgcolor="#ffffff"
 						valign=center align=center
-						style="font-size: 14px; color: #555555;"><b>Tab 3</b></td>
-				</tr>
+						style="font-size: 14px; color: #555555;">
+						<div>
+							<table style="height: 10px"></table>
+							<table style="width: 100%;">
+								<tr style="">
+									<td class="topRowData">
+										<p style="padding-left: 5px; height: 15px;">
+											<b>Simulation ID3:</b>
+										</p> <span style="font-size: 16px; text-align: center;"
+										th:text="${SimulationContent.simulationId}"></span>
+									</td>
+									<td class="topRowData">
+										<p style="height: 15px; padding-left: 5px;">
+											<b>Run By3:</b>
+										</p> <span style="font-size: 16px; text-align: center;"
+										th:text="${SimulationContent.createdBy}"></span>
+									</td>
+									<td class="topRowData">
+										<p style="height: 15px; padding-left: 5px;">
+											<b>Date of Simulation3:</b>
+										</p> <span style="font-size: 16px; vertical-align: center;"
+										th:text="${SimulationContent.createdDate}"></span>
+									</td>
+									<td class="topRowData">
+										<p style="height: 15px; padding-left: 5px;">
+											<b>Date Range3:</b>
+										</p> <span style="font-size: 16px; vertical-align: center;"
+										th:text=" ${SimulationContent.startDate} +' - '+ ${SimulationContent.endDate}"></span>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<table style="height: 10px"></table>
+						<table style="width: 100%;" class="table">
+							<tr>
+								<th>Node</th>
+								<th>Previous Values</th>
+								<th>New Values</th>
+							</tr>
+							<tbody>
+								<tr
+									th:each="capacitySimulationUI,iStat : ${SimulationUIContent}">
+									<td
+										style="border-bottom: 1px solid #DADCE0; border-left: 1px solid #DADCE0;"
+										th:text="${capacitySimulationUI.nodeId}"></td>
+									<td style="border-bottom: 1px solid #DADCE0;">
+										<p
+											th:each="simu :  ${capacitySimulationUI.nodeCapacitySettings}">
+											<span th:text="${simu.capacityWeek}"></span> <span
+												th:text="${simu.capacity}"></span>
+										</p>
+									</td>
+									<td
+										style="border-bottom: 1px solid #DADCE0; border-right: 1px solid #DADCE0;">
+										<p
+											th:each="simu :  ${SimulationUIContent2[iStat.index].nodeCapacitySettings}">
+											<span th:text="${simu.capacityWeek}"></span> <span
+												th:text="${simu.capacity}"></span>
+										</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<table
+							style="width: 100%; border-spacing: 0px; border: 0px; box-sizing: 0px; padding: 2px;">
+							<td
+								style="padding: 0px 2px; border: 1px solid #DADCE0; border-radius: 5px;">
+								<div style="width: 100%; height: 120px; box-sizing: border-box;">
+									<table
+										style="width: 100%; height: 120px; border-spacing: 0px; box-sizing: border-box;"
+										cellpadding="0" cellspacing="0">
+										<tr>
+											<td style="padding: 29px 0px 29px 36px; max-width: 50%;">
+												<p>Thank You</p>
+												<p>Your NodeStar Administrator</p>
+											</td>
+											<td
+												style="padding: 24px 36px 23px 0px; text-align: right; max-width: 50%;"
+												align="right"><img src='' /></td>
+										</tr>
+									</table>
+								</div>
+							</td>
+							</td>
+							</tr>
+						</table>
 			</table>
 		</section>
 	</div>
 
 </div>
 
-<p>
-	<small>Source: <cite><a
-			href="https://www.bjcp.org/stylecenter.php">BJCP Style Guidelines</a></cite></small>
-</p>
 </html>
