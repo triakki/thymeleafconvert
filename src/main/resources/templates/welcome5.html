@@ -323,25 +323,25 @@ body {
 										<p style="padding-left: 5px; height: 15px;">
 											<b>Simulation ID2:</b>
 										</p> <span style="font-size: 16px; text-align: center;"
-										th:text="${SimulationContent.simulationId}"></span>
+										th:text="${SimulationContentLT.simulationId}"></span>
 									</td>
 									<td class="topRowData">
 										<p style="height: 15px; padding-left: 5px;">
 											<b>Run By2:</b>
 										</p> <span style="font-size: 16px; text-align: center;"
-										th:text="${SimulationContent.createdBy}"></span>
+										th:text="${SimulationContentLT.createdBy}"></span>
 									</td>
 									<td class="topRowData">
 										<p style="height: 15px; padding-left: 5px;">
 											<b>Date of Simulation2:</b>
 										</p> <span style="font-size: 16px; vertical-align: center;"
-										th:text="${SimulationContent.createdDate}"></span>
+										th:text="${SimulationContentLT.createdDate}"></span>
 									</td>
 									<td class="topRowData">
 										<p style="height: 15px; padding-left: 5px;">
 											<b>Date Range2:</b>
 										</p> <span style="font-size: 16px; vertical-align: center;"
-										th:text=" ${SimulationContent.startDate} +' - '+ ${SimulationContent.endDate}"></span>
+										th:text=" ${SimulationContentLT.startDate} +' - '+ ${SimulationContentLT.endDate}"></span>
 									</td>
 								</tr>
 							</table>
@@ -349,13 +349,13 @@ body {
 						<table style="height: 10px"></table>
 						<table style="width: 100%;" class="table">
 							<tr>
-								<th>Node</th>
-								<th>Previous Values</th>
-								<th>New Values</th>
+								<th>Nodes</th>
+								<th>Previous Value</th>
+								<th>Current Value</th>
 							</tr>
 							<tbody>
 								<tr
-									th:each="capacitySimulationUI,iStat : ${SimulationUIContent}">
+									th:each="capacitySimulationUI,iStat : ${SimulationUIContentLT}">
 									<td
 										style="border-bottom: 1px solid #DADCE0; border-left: 1px solid #DADCE0;"
 										th:text="${capacitySimulationUI.nodeId}"></td>
@@ -369,7 +369,7 @@ body {
 									<td
 										style="border-bottom: 1px solid #DADCE0; border-right: 1px solid #DADCE0;">
 										<p
-											th:each="simu :  ${SimulationUIContent2[iStat.index].nodeCapacitySettings}">
+											th:each="simu :  ${SimulationUIContent2LT[iStat.index].nodeCapacitySettings}">
 											<span th:text="${simu.capacityWeek}"></span> <span
 												th:text="${simu.capacity}"></span>
 										</p>
@@ -416,25 +416,25 @@ body {
 										<p style="padding-left: 5px; height: 15px;">
 											<b>Simulation ID3:</b>
 										</p> <span style="font-size: 16px; text-align: center;"
-										th:text="${SimulationContent.simulationId}"></span>
+										th:text="${SimulationContentCOST.simulationId}"></span>
 									</td>
 									<td class="topRowData">
 										<p style="height: 15px; padding-left: 5px;">
 											<b>Run By3:</b>
 										</p> <span style="font-size: 16px; text-align: center;"
-										th:text="${SimulationContent.createdBy}"></span>
+										th:text="${SimulationContentCOST.createdBy}"></span>
 									</td>
 									<td class="topRowData">
 										<p style="height: 15px; padding-left: 5px;">
 											<b>Date of Simulation3:</b>
 										</p> <span style="font-size: 16px; vertical-align: center;"
-										th:text="${SimulationContent.createdDate}"></span>
+										th:text="${SimulationContentCOST.createdDate}"></span>
 									</td>
 									<td class="topRowData">
 										<p style="height: 15px; padding-left: 5px;">
 											<b>Date Range3:</b>
 										</p> <span style="font-size: 16px; vertical-align: center;"
-										th:text=" ${SimulationContent.startDate} +' - '+ ${SimulationContent.endDate}"></span>
+										th:text=" ${SimulationContentCOST.startDate} +' - '+ ${SimulationContent.endDate}"></span>
 									</td>
 								</tr>
 							</table>
@@ -448,7 +448,7 @@ body {
 							</tr>
 							<tbody>
 								<tr
-									th:each="capacitySimulationUI,iStat : ${SimulationUIContent}">
+									th:each="capacitySimulationUI,iStat : ${SimulationUIContentCOST}">
 									<td
 										style="border-bottom: 1px solid #DADCE0; border-left: 1px solid #DADCE0;"
 										th:text="${capacitySimulationUI.nodeId}"></td>
@@ -462,7 +462,7 @@ body {
 									<td
 										style="border-bottom: 1px solid #DADCE0; border-right: 1px solid #DADCE0;">
 										<p
-											th:each="simu :  ${SimulationUIContent2[iStat.index].nodeCapacitySettings}">
+											th:each="simu :  ${SimulationUIContent2COST[iStat.index].nodeCapacitySettings}">
 											<span th:text="${simu.capacityWeek}"></span> <span
 												th:text="${simu.capacity}"></span>
 										</p>

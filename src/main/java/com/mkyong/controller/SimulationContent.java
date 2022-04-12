@@ -10,7 +10,7 @@ public class SimulationContent {
 	private Date endDate;
 	private String iStat;
 	
-	private CapacitySimulationUI capacitySimulationUI;
+//	private CapacitySimulationUI capacitySimulationUI;
 	
 	public String getCreatedBy() {
 		return createdBy;
@@ -52,13 +52,13 @@ public class SimulationContent {
 		this.endDate = endDate;
 	}
 
-	public CapacitySimulationUI getCapacitySimulationUI() {
-		return capacitySimulationUI;
-	}
-
-	public void setCapacitySimulationUI(CapacitySimulationUI capacitySimulationUI) {
-		this.capacitySimulationUI = capacitySimulationUI;
-	}
+//	public CapacitySimulationUI getCapacitySimulationUI() {
+//		return capacitySimulationUI;
+//	}
+//
+//	public void setCapacitySimulationUI(CapacitySimulationUI capacitySimulationUI) {
+//		this.capacitySimulationUI = capacitySimulationUI;
+//	}
 
 	public String getiStat() {
 		return iStat;
