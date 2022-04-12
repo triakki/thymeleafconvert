@@ -80,6 +80,6 @@ public class WelcomeController {
 
 //        model.addAttribute("nodeId", true);
 
-        return "welcome"; //view
+        return "welcome5"; //view
     }
 }

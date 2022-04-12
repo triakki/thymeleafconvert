@@ -4,6 +4,94 @@
 <head>
 <title>Test Report</title>
 <style>
+/*
+ CSS for the main interaction
+*/
+.tabset>input[type="radio"] {
+	position: absolute;
+	left: -200vw;
+}
+
+.tabset .tab-panel {
+	display: none;
+}
+
+.tabset>input:first-child:checked ~ .tab-panels>.tab-panel:first-child,
+	.tabset>input:nth-child(3):checked ~ .tab-panels>.tab-panel:nth-child(2),
+	.tabset>input:nth-child(5):checked ~ .tab-panels>.tab-panel:nth-child(3),
+	.tabset>input:nth-child(7):checked ~ .tab-panels>.tab-panel:nth-child(4),
+	.tabset>input:nth-child(9):checked ~ .tab-panels>.tab-panel:nth-child(5),
+	.tabset>input:nth-child(11):checked ~ .tab-panels>.tab-panel:nth-child(6)
+	{
+	display: block;
+}
+
+/*
+ Styling
+*/
+body {
+	font: 16px/1.5em "Overpass", "Open Sans", Helvetica, sans-serif;
+	color: #333;
+	font-weight: 300;
+}
+
+.tabset>label {
+	position: relative;
+	display: inline-block;
+	padding: 15px 15px 25px;
+	border: 1px solid transparent;
+	border-bottom: 0;
+	cursor: pointer;
+	font-weight: 600;
+}
+
+.tabset>label::after {
+	content: "";
+	position: absolute;
+	left: 15px;
+	bottom: 10px;
+	width: 22px;
+	height: 4px;
+	background: #8d8d8d;
+}
+
+.tabset>label:hover, .tabset>input:focus+label {
+	color: #06c;
+}
+
+.tabset>label:hover::after, .tabset>input:focus+label::after, .tabset>input:checked+label::after
+	{
+	background: #06c;
+}
+
+.tabset>input:checked+label {
+	border-color: #ccc;
+	border-bottom: 1px solid #fff;
+	margin-bottom: -1px;
+}
+
+.tab-panel {
+	padding: 30px 0;
+	border-top: 1px solid #ccc;
+}
+
+/*
+ Demo purposes only
+*/
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+body {
+	padding: 30px;
+}
+
+.tabset {
+	width: 100%;
+}
+
+
+
 body {
 	-webkit-text-size-adjust: 100%;
 }
@@ -25,23 +113,6 @@ body {
 	border-bottom: 0px;
 	cursor: pointer;
 	border-radius: 5px 5px 0px 0px;
-}
-
-.tabcheck:checked+#container {
-	height: 363px !important;
-	max-height: 363px !important;
-}
-
-.tabcheck:checked+div, #tab2:checked+span .content2, #tab3:checked+span .content3, #tab4:checked+span .content4
-	{
-	display: block !important;
-	max-height: none !important;
-	height: auto !important;
-}
-
-#tab1:checked+span .title1, #tab2:checked+span .title2, #tab3:checked+span .title3
-	{
-	background-color: #E2EEF6;
 }
 
 .table {
@@ -100,18 +171,20 @@ body {
 .table tr:last-child th:last-child {
 	border-top-right-radius: 5px;
 }
+
 </style>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
-<body>
 	<table
 		style="background-color: #17233D; height: 56px; width: 100%; border-spacing: 0px; border: 0px; box-sizing: 0px;"
 		cellpadding="0" cellspacing="0" border="0" height="100%" width="100%">
 		<tr>
-			<td style="padding: 6px 0px 5px 32px;"><img height="41px" width="60px" src='' /></td>
-			<td style="padding: 12px 32px 12px 0px; text-align: right;"	align="right"><img height="28px" width="60px" src='' /></td>
+			<td style="padding: 6px 0px 5px 32px;"><img height="41px"
+				width="60px" src='' /></td>
+			<td style="padding: 12px 32px 12px 0px; text-align: right;"
+				align="right"><img height="28px" width="60px" src='' /></td>
 		</tr>
 	</table>
 	<table
@@ -119,7 +192,8 @@ body {
 		<tr style="">
 			<td style="width: 9.7%;"></td>
 			<td>
-				<p style="font-size: 30px; font-weight: bold;" th:text="'Dear '+${SimulationContent.createdBy}+','"></p>
+				<p style="font-size: 30px; font-weight: bold;"
+					th:text="'Dear '+${SimulationContent.createdBy}+','"></p>
 			</td>
 			<td style="width: 9.7%;"></td>
 		</tr>
@@ -132,73 +206,21 @@ body {
 			</td>
 		</tr>
 	</table>
-	<form>
-		<input type=radio class="tabcheck" style="display: none !important; mso-hide: all" checked>
-		<div id="container" style="margin-left: 100px; margin-right: 100px; height: 100%; max-height: 310px;">
-			<input type=radio class="tabcheck" style="display: none !important;" checked>
-			<div style="display: none; height: 0px; max-height: 0px; overflow: hidden;">
-				<label> 
-					<input type=radio name="tab" class="tab" id="tab1" style="display: none !important;" checked> 
-					<span>
-						<div class="title1">Capacity</div> 
-						<!-- NESTED TAB 2 --> 
-						<label>
-							<input type=radio name="tab" class="tab" id="tab2" style="display: none !important;"> 
-							<span>
-								<div class="title2">Lead Time</div>
-								<!-- NESTED TAB 3 --> 
-								<label>
-									<input type=radio name="tab" class="tab" id="tab3" style="display: none !important;"> 
-									<span>
-										<div class="title3">Cost</div>
-										
-										
-										
-										<label>
-											<input type=radio name="tab" class="tab" id="tab4" style="display: none !important;"> 
-											<span>
-												<div class="title4">Cost4</div>
-												<div class="content4" style="height: 0px; max-height: 0px; clear: left;background-color: yellow;">
-													<table cellpadding="0" cellspacing="0" height="100%" width="100%">
-														<tr>
-															<td colspan="2" height="1500" width="100%" bgcolor="#eeeccc" valign=center align=center style="font-size: 14px; color: #555555;"><b>Tab 4</b></td>
-														</tr>
-													</table>
-												</div>
-											</span>
-										</label> 
-										
-										
-										
-										<div class="content3" style="height: 0px; max-height: 0px; clear: left;background-color: yellow;">
-											<table cellpadding="0" cellspacing="0" height="100%" width="100%">
-												<tr>
-													<td colspan="2" height="1500" width="100%" bgcolor="#eeeccc" valign=center align=center style="font-size: 14px; color: #555555;"><b>Tab 3</b></td>
-												</tr>
-											</table>
-										</div>
-									</span>
-								</label> 
-								<!-- END NESTED TAB 3 -->
-								<div class="content2" style="height: 0px; max-height: 0px; clear: left; background-color: blue;">
-									<table cellpadding="0" cellspacing="0" height="100%" width="100%">
-										<tr>
-											<td colspan="2" height="1500" width="100%" bgcolor="#bbbbbb" valign=center align=center style="font-size: 14px; color: #555555;"><b>Tab 2</b></td>
-										</tr>
-									</table>
-								</div>
-							</span>
-						</label> 
-						<!-- END NESTED TAB 2 --> 
-						<!-- TAB 1 Content originally here -->
-						
-					</span>
-				</label>
-			</div>
-			<!--<![endif]-->
-			<!-- TAB 1 Content moved outside nested labels for fallback for non supported clients: Outlook.com/Outlook -->
-			<!-- table cellpadding="0" cellspacing="0" height="100%" width="100%"
-				style="border: 1px solid #DADCE0;">
+
+<div class="tabset">
+	<!-- Tab 1 -->
+	<input type="radio" name="tabset" id="tab1" aria-controls="marzen"
+		checked> <label for="tab1">Capacity</label>
+	<!-- Tab 2 -->
+	<input type="radio" name="tabset" id="tab2" aria-controls="rauchbier">
+	<label for="tab2">Lead Time</label>
+	<!-- Tab 3 -->
+	<input type="radio" name="tabset" id="tab3" aria-controls="dunkles">
+	<label for="tab3">Cost</label>
+
+	<div class="tab-panels">
+		<section id="marzen" class="tab-panel">
+			<table style="width: 100%;">
 				<tr>
 					<td colspan="2" height="100%" width="100%" bgcolor="#ffffff"
 						valign=center align=center
@@ -287,11 +309,41 @@ body {
 							</td>
 							</td>
 							</tr>
-						</table-->
-		</div>
-	</form>
-	<td style="width: 9.7%;"></td>
-	</table>
-</body>
+						</table>
+			</table>
+		</section>
+		<section id="rauchbier" class="tab-panel">
+			<h2>6B. Rauchbier</h2>
+			<p>
+				<strong>Overall Impression:</strong> An elegant, malty German amber
+				lager with a balanced, complementary beechwood smoke character.
+				Toasty-rich malt in aroma and flavor, restrained bitterness, low to
+				high smoke flavor, clean fermentation profile, and an attenuated
+				finish are characteristic.
+			</p>
+			<p>
+				<strong>History:</strong> A historical specialty of the city of
+				Bamberg, in the Franconian region of Bavaria in Germany.
+				Beechwood-smoked malt is used to make a Märzen-style amber lager.
+				The smoke character of the malt varies by maltster; some breweries
+				produce their own smoked malt (rauchmalz).
+			</p>
+		</section>
+		<section id="dunkles" class="tab-panel">
+			<table cellpadding="0" cellspacing="0" height="100%" width="100%">
+				<tr>
+					<td colspan="2" height="1500" width="100%" bgcolor="#eeeccc"
+						valign=center align=center
+						style="font-size: 14px; color: #555555;"><b>Tab 3</b></td>
+				</tr>
+			</table>
+		</section>
+	</div>
 
+</div>
+
+<p>
+	<small>Source: <cite><a
+			href="https://www.bjcp.org/stylecenter.php">BJCP Style Guidelines</a></cite></small>
+</p>
 </html>

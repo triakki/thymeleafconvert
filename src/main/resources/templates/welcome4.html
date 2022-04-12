@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Test Report</title>
+<style>
+/*
+ CSS for the main interaction
+*/
+.tabset > input[type="radio"] {
+  position: absolute;
+  left: -200vw;
+}
+
+.tabset .tab-panel {
+  display: none;
+}
+
+.tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+.tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
+.tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
+.tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
+.tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
+.tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
+  display: block;
+}
+
+/*
+ Styling
+*/
+body {
+  font: 16px/1.5em "Overpass", "Open Sans", Helvetica, sans-serif;
+  color: #333;
+  font-weight: 300;
+}
+
+.tabset > label {
+  position: relative;
+  display: inline-block;
+  padding: 15px 15px 25px;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.tabset > label::after {
+  content: "";
+  position: absolute;
+  left: 15px;
+  bottom: 10px;
+  width: 22px;
+  height: 4px;
+  background: #8d8d8d;
+}
+
+.tabset > label:hover,
+.tabset > input:focus + label {
+  color: #06c;
+}
+
+.tabset > label:hover::after,
+.tabset > input:focus + label::after,
+.tabset > input:checked + label::after {
+  background: #06c;
+}
+
+.tabset > input:checked + label {
+  border-color: #ccc;
+  border-bottom: 1px solid #fff;
+  margin-bottom: -1px;
+}
+
+.tab-panel {
+  padding: 30px 0;
+  border-top: 1px solid #ccc;
+}
+
+/*
+ Demo purposes only
+*/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 30px;
+}
+
+.tabset {
+  max-width: 65em;
+}
+
+</style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<div class="tabset">
+  <!-- Tab 1 -->
+  <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
+  <label for="tab1">Märzen</label>
+  <!-- Tab 2 -->
+  <input type="radio" name="tabset" id="tab2" aria-controls="rauchbier">
+  <label for="tab2">Rauchbier</label>
+  <!-- Tab 3 -->
+  <input type="radio" name="tabset" id="tab3" aria-controls="dunkles">
+  <label for="tab3">Dunkles Bock</label>
+  
+  <div class="tab-panels">
+    <section id="marzen" class="tab-panel">
+      <!-- table cellpadding="0" cellspacing="0" height="100%" width="100%"
+				style="border: 1px solid #DADCE0;">
+				<tr>
+					<td colspan="2" height="100%" width="100%" bgcolor="#ffffff"
+						valign=center align=center
+						style="font-size: 14px; color: #555555;">
+						<div>
+							<table style="height: 10px"></table>
+							<table style="width: 100%;">
+								<tr style="">
+									<td class="topRowData">
+										<p style="padding-left: 5px; height: 15px;">
+											<b>Simulation ID:</b>
+										</p> <span style="font-size: 16px; text-align: center;"
+										th:text="${SimulationContent.simulationId}"></span>
+									</td>
+									<td class="topRowData">
+										<p style="height: 15px; padding-left: 5px;">
+											<b>Run By:</b>
+										</p> <span style="font-size: 16px; text-align: center;"
+										th:text="${SimulationContent.createdBy}"></span>
+									</td>
+									<td class="topRowData">
+										<p style="height: 15px; padding-left: 5px;">
+											<b>Date of Simulation:</b>
+										</p> <span style="font-size: 16px; vertical-align: center;"
+										th:text="${SimulationContent.createdDate}"></span>
+									</td>
+									<td class="topRowData">
+										<p style="height: 15px; padding-left: 5px;">
+											<b>Date Range:</b>
+										</p> <span style="font-size: 16px; vertical-align: center;"
+										th:text=" ${SimulationContent.startDate} +' - '+ ${SimulationContent.endDate}"></span>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<table style="height: 10px"></table>
+						<table style="width: 100%;" class="table">
+							<tr>
+								<th>Node</th>
+								<th>Previous Values</th>
+								<th>New Values</th>
+							</tr>
+							<tbody>
+								<tr
+									th:each="capacitySimulationUI,iStat : ${SimulationUIContent}">
+									<td
+										style="border-bottom: 1px solid #DADCE0; border-left: 1px solid #DADCE0;"
+										th:text="${capacitySimulationUI.nodeId}"></td>
+									<td style="border-bottom: 1px solid #DADCE0;">
+										<p
+											th:each="simu :  ${capacitySimulationUI.nodeCapacitySettings}">
+											<span th:text="${simu.capacityWeek}"></span> <span
+												th:text="${simu.capacity}"></span>
+										</p>
+									</td>
+									<td
+										style="border-bottom: 1px solid #DADCE0; border-right: 1px solid #DADCE0;">
+										<p
+											th:each="simu :  ${SimulationUIContent2[iStat.index].nodeCapacitySettings}">
+											<span th:text="${simu.capacityWeek}"></span> <span
+												th:text="${simu.capacity}"></span>
+										</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<table
+							style="width: 100%; border-spacing: 0px; border: 0px; box-sizing: 0px; padding: 2px;">
+							<td
+								style="padding: 0px 2px; border: 1px solid #DADCE0; border-radius: 5px;">
+								<div style="width: 100%; height: 120px; box-sizing: border-box;">
+									<table
+										style="width: 100%; height: 120px; border-spacing: 0px; box-sizing: border-box;"
+										cellpadding="0" cellspacing="0">
+										<tr>
+											<td style="padding: 29px 0px 29px 36px; max-width: 50%;">
+												<p>Thank You</p>
+												<p>Your NodeStar Administrator</p>
+											</td>
+											<td
+												style="padding: 24px 36px 23px 0px; text-align: right; max-width: 50%;"
+												align="right"><img src='' /></td>
+										</tr>
+									</table>
+								</div>
+							</td>
+							</td>
+							</tr>
+						</table-->
+  </section>
+    <section id="rauchbier" class="tab-panel">
+      <h2>6B. Rauchbier</h2>
+      <p><strong>Overall Impression:</strong>  An elegant, malty German amber lager with a balanced, complementary beechwood smoke character. Toasty-rich malt in aroma and flavor, restrained bitterness, low to high smoke flavor, clean fermentation profile, and an attenuated finish are characteristic.</p>
+      <p><strong>History:</strong> A historical specialty of the city of Bamberg, in the Franconian region of Bavaria in Germany. Beechwood-smoked malt is used to make a Märzen-style amber lager. The smoke character of the malt varies by maltster; some breweries produce their own smoked malt (rauchmalz).</p>
+    </section>
+    <section id="dunkles" class="tab-panel">
+ 			<table cellpadding="0" cellspacing="0" height="100%" width="100%">
+				<tr>
+					<td colspan="2" height="1500" width="100%" bgcolor="#eeeccc" valign=center align=center style="font-size: 14px; color: #555555;"><b>Tab 3</b></td>
+				</tr>
+			</table>
+     </section>
+  </div>
+  
+</div>
+
+<p><small>Source: <cite><a href="https://www.bjcp.org/stylecenter.php">BJCP Style Guidelines</a></cite></small></p>
+</html>
