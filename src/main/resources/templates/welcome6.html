@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Test Report</title>
+<style>
+body {
+	-webkit-text-size-adjust: 100%;
+}
+
+.tab1, .tabcheck1 {
+	display: none;
+}
+
+.tabcheck {
+	height: 0px;
+	visibility: hidden;
+}
+
+.title1, .title2, .title3 {
+	background-color: #ffffff;
+	float: left;
+	padding: 15px 20px 15px 20px;
+	border: 1px solid #888888;
+	border-bottom: 0px;
+	cursor: pointer;
+	border-radius: 5px 5px 0px 0px;
+}
+
+.tabcheck:checked+#container {
+	height: 363px !important;
+	max-height: 363px !important;
+}
+
+.tabcheck:checked+div, #tab2:checked+span .content2, #tab3:checked+span .content3
+	{
+	display: block !important;
+	max-height: none !important;
+	height: auto !important;
+}
+
+#tab1:checked+span .title1, #tab2:checked+span .title2, #tab3:checked+span .title3
+	{
+	background-color: #E2EEF6;
+}
+
+.table {
+	font-size: 14px;
+	font-family: 'Roboto', sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.topRowData {
+	background-color: #E2EEF6;
+	border: 1px solid #DADCE0;
+	border-radius: 5px;
+	width: 20.16%;
+}
+
+.table th {
+	font-size: 14px;
+	color: #FFFFFF;
+	font-family: 'Roboto', sans-serif;
+	background-color: #17233D;
+	height: 50px;
+	text-align: left;
+	padding-left: 5px;
+	width: 26.87%;
+	border-bottom: 2px solid #DADCE0;
+	border-top: 2px solid #DADCE0;
+	border-collapse: collapse;
+	border-radius: 0px;
+}
+
+.table th:first-child {
+	padding-left: 32px;
+}
+/* table th:last-child{
+         padding-right: 32px;
+         text-align: right;
+         } */
+.table td {
+	text-align: left;
+	height: 50px;
+	padding-left: 5px;
+}
+
+.table td:first-child {
+	padding-left: 32px;
+}
+/* table td:last-child{
+         padding-right: 32px;
+         text-align: right;
+         } */
+.table tr:first-child th:first-child {
+	border-top-left-radius: 5px;
+}
+
+.table tr:last-child th:last-child {
+	border-top-right-radius: 5px;
+}
+</style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+	<table
+		style="background-color: #17233D; height: 56px; width: 100%; border-spacing: 0px; border: 0px; box-sizing: 0px;"
+		cellpadding="0" cellspacing="0" border="0" height="100%" width="100%">
+		<tr>
+			<td style="padding: 6px 0px 5px 32px;"><img height="41px"
+				width="60px" src='' /></td>
+			<td style="padding: 12px 32px 12px 0px; text-align: right;"
+				align="right"><img height="28px" width="60px" src='' /></td>
+		</tr>
+	</table>
+	<table
+		style="width: 100%; border-spacing: 0px; border: 0px; box-sizing: 0px; padding: 2px;">
+		<tr>
+			<td style="width: 9.7%;"></td>
+			<td>
+				<p style="font-size: 30px; font-weight: bold;"
+					th:text="'Dear '+${SimulationContent.createdBy}+','"></p>
+			</td>
+			<td style="width: 9.7%;"></td>
+		</tr>
+		<tr>
+			<td style="width: 9.7%;"></td>
+			<td>
+				<p style="font-size: 18px;">
+					We have completed your request for this simulation. <br>
+				</p>
+			</td>
+		</tr>
+	</table>
+	<form>
+		<!--[if !mso]><!-- -->
+		<input type=radio class="tabcheck"
+			style="display: none !important; mso-hide: all" checked>
+		<!--<![endif]-->
+		<div id="container"
+			style="margin-left: 100px; margin-right: 100px; height: 100%; max-height: 310px; overflow: hidden;">
+			<!--[if !mso]><!-- -->
+			<input type=radio class="tabcheck" style="display: none !important;"
+				checked>
+			<div
+				style="display: none; height: 0px; max-height: 0px; overflow: hidden;">
+				<label> <input type=radio name="tab" class="tab" id="tab1"
+					style="display: none !important;" checked> <span>
+						<div class="title1">Capacity</div> <!-- NESTED TAB 2 --> <label>
+							<input type=radio name="tab" class="tab" id="tab2"
+							style="display: none !important;"> <span>
+								<div class="title2">Lead Time</div> <!-- NESTED TAB 3 --> <label>
+									<input type=radio name="tab" class="tab" id="tab3"
+									style="display: none !important;"> <span>
+										<div class="title3">Cost</div>
+										<div class="content3"
+											style="height: 0px; max-height: 0px; overflow: hidden; clear: left;">
+											<table style="width: 100%;">
+												<tr>
+													<td colspan="2" height="100%" width="100%"
+														bgcolor="#ffffff" valign=center align=center
+														style="font-size: 14px; color: #555555;">
+														<div>
+															<table style="height: 10px"></table>
+															<table style="width: 100%;">
+																<tr style="">
+																	<td class="topRowData">
+																		<p style="padding-left: 5px; height: 15px;">
+																			<b>Simulation ID3:</b>
+																		</p> <span style="font-size: 16px; text-align: center;"
+																		th:text="${SimulationContentCOST.simulationId}"></span>
+																	</td>
+																	<td class="topRowData">
+																		<p style="height: 15px; padding-left: 5px;">
+																			<b>Run By3:</b>
+																		</p> <span style="font-size: 16px; text-align: center;"
+																		th:text="${SimulationContentCOST.createdBy}"></span>
+																	</td>
+																	<td class="topRowData">
+																		<p style="height: 15px; padding-left: 5px;">
+																			<b>Date of Simulation3:</b>
+																		</p> <span
+																		style="font-size: 16px; vertical-align: center;"
+																		th:text="${SimulationContentCOST.createdDate}"></span>
+																	</td>
+																	<td class="topRowData">
+																		<p style="height: 15px; padding-left: 5px;">
+																			<b>Date Range3:</b>
+																		</p> <span
+																		style="font-size: 16px; vertical-align: center;"
+																		th:text=" ${SimulationContentCOST.startDate} +' - '+ ${SimulationContent.endDate}"></span>
+																	</td>
+																</tr>
+															</table>
+														</div>
+														<table style="height: 10px"></table>
+														<table style="width: 100%;" class="table">
+															<tr>
+																<th>Node</th>
+																<th>Previous Values</th>
+																<th>New Values</th>
+															</tr>
+															<tbody>
+																<tr
+																	th:each="capacitySimulationUI,iStat : ${SimulationUIContentCOST}">
+																	<td
+																		style="border-bottom: 1px solid #DADCE0; border-left: 1px solid #DADCE0;"
+																		th:text="${capacitySimulationUI.nodeId}"></td>
+																	<td style="border-bottom: 1px solid #DADCE0;">
+																		<p
+																			th:each="simu :  ${capacitySimulationUI.nodeCapacitySettings}">
+																			<span th:text="${simu.capacityWeek}"></span> <span
+																				th:text="${simu.capacity}"></span>
+																		</p>
+																	</td>
+																	<td
+																		style="border-bottom: 1px solid #DADCE0; border-right: 1px solid #DADCE0;">
+																		<p
+																			th:each="simu :  ${SimulationUIContent2COST[iStat.index].nodeCapacitySettings}">
+																			<span th:text="${simu.capacityWeek}"></span> <span
+																				th:text="${simu.capacity}"></span>
+																		</p>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+														<table
+															style="width: 100%; border-spacing: 0px; border: 0px; box-sizing: 0px; padding: 2px;">
+															<td
+																style="padding: 0px 2px; border: 1px solid #DADCE0; border-radius: 5px;">
+																<div
+																	style="width: 100%; height: 120px; box-sizing: border-box;">
+																	<table
+																		style="width: 100%; height: 120px; border-spacing: 0px; box-sizing: border-box;"
+																		cellpadding="0" cellspacing="0">
+																		<tr>
+																			<td
+																				style="padding: 29px 0px 29px 36px; max-width: 50%;">
+																				<p>Thank You</p>
+																				<p>Your NodeStar Administrator</p>
+																			</td>
+																			<td
+																				style="padding: 24px 36px 23px 0px; text-align: right; max-width: 50%;"
+																				align="right"><img src='' /></td>
+																		</tr>
+																	</table>
+																</div>
+															</td>
+														</table>
+											</table>
+										</div>
+								</span>
+							</label> <!-- END NESTED TAB 3 -->
+								<div class="content2"
+									style="height: 0px; max-height: 0px; overflow: hidden; clear: left;">
+									<table style="width: 100%;">
+										<tr>
+											<td colspan="2" height="100%" width="100%" bgcolor="#ffffff"
+												valign=center align=center
+												style="font-size: 14px; color: #555555;">
+												<div>
+													<table style="height: 10px"></table>
+													<table style="width: 100%;">
+														<tr style="">
+															<td class="topRowData">
+																<p style="padding-left: 5px; height: 15px;">
+																	<b>Simulation ID2:</b>
+																</p> <span style="font-size: 16px; text-align: center;"
+																th:text="${SimulationContentLT.simulationId}"></span>
+															</td>
+															<td class="topRowData">
+																<p style="height: 15px; padding-left: 5px;">
+																	<b>Run By2:</b>
+																</p> <span style="font-size: 16px; text-align: center;"
+																th:text="${SimulationContentLT.createdBy}"></span>
+															</td>
+															<td class="topRowData">
+																<p style="height: 15px; padding-left: 5px;">
+																	<b>Date of Simulation2:</b>
+																</p> <span style="font-size: 16px; vertical-align: center;"
+																th:text="${SimulationContentLT.createdDate}"></span>
+															</td>
+															<td class="topRowData">
+																<p style="height: 15px; padding-left: 5px;">
+																	<b>Date Range2:</b>
+																</p> <span style="font-size: 16px; vertical-align: center;"
+																th:text=" ${SimulationContentLT.startDate} +' - '+ ${SimulationContentLT.endDate}"></span>
+															</td>
+														</tr>
+													</table>
+												</div>
+												<table style="height: 10px"></table>
+												<table style="width: 100%;" class="table">
+													<tr>
+														<th>Nodes</th>
+														<th>Previous Value</th>
+														<th>Current Value</th>
+													</tr>
+													<tbody>
+														<tr
+															th:each="capacitySimulationUI,iStat : ${SimulationUIContentLT}">
+															<td
+																style="border-bottom: 1px solid #DADCE0; border-left: 1px solid #DADCE0;"
+																th:text="${capacitySimulationUI.nodeId}"></td>
+															<td style="border-bottom: 1px solid #DADCE0;">
+																<p
+																	th:each="simu :  ${capacitySimulationUI.nodeCapacitySettings}">
+																	<span th:text="${simu.capacityWeek}"></span> <span
+																		th:text="${simu.capacity}"></span>
+																</p>
+															</td>
+															<td
+																style="border-bottom: 1px solid #DADCE0; border-right: 1px solid #DADCE0;">
+																<p
+																	th:each="simu :  ${SimulationUIContent2LT[iStat.index].nodeCapacitySettings}">
+																	<span th:text="${simu.capacityWeek}"></span> <span
+																		th:text="${simu.capacity}"></span>
+																</p>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+												<table
+													style="width: 100%; border-spacing: 0px; border: 0px; box-sizing: 0px; padding: 2px;">
+													<td
+														style="padding: 0px 2px; border: 1px solid #DADCE0; border-radius: 5px;">
+														<div
+															style="width: 100%; height: 120px; box-sizing: border-box;">
+															<table
+																style="width: 100%; height: 120px; border-spacing: 0px; box-sizing: border-box;"
+																cellpadding="0" cellspacing="0">
+																<tr>
+																	<td
+																		style="padding: 29px 0px 29px 36px; max-width: 50%;">
+																		<p>Thank You</p>
+																		<p>Your NodeStar Administrator</p>
+																	</td>
+																	<td
+																		style="padding: 24px 36px 23px 0px; text-align: right; max-width: 50%;"
+																		align="right"><img src='' /></td>
+																</tr>
+															</table>
+														</div>
+													</td>
+													</td>
+													</tr>
+												</table>
+									</table>
+								</div>
+						</span>
+					</label> <!-- END NESTED TAB 2 --> <!-- TAB 1 Content originally here -->
+				</span>
+				</label>
+			</div>
+			<!--<![endif]-->
+			<!-- TAB 1 Content moved outside nested labels for fallback for non supported clients: Outlook.com/Outlook -->
+			<table style="width: 100%;">
+				<tr>
+					<td colspan="2" height="100%" width="100%" bgcolor="#ffffff"
+						valign=center align=center
+						style="font-size: 14px; color: #555555;">
+						<div>
+							<table style="height: 10px"></table>
+							<table style="width: 100%;">
+								<tr style="">
+									<td class="topRowData">
+										<p style="padding-left: 5px; height: 15px;">
+											<b>Simulation ID:</b>
+										</p> <span style="font-size: 16px; text-align: center;"
+										th:text="${SimulationContent.simulationId}"></span>
+									</td>
+									<td class="topRowData">
+										<p style="height: 15px; padding-left: 5px;">
+											<b>Run By:</b>
+										</p> <span style="font-size: 16px; text-align: center;"
+										th:text="${SimulationContent.createdBy}"></span>
+									</td>
+									<td class="topRowData">
+										<p style="height: 15px; padding-left: 5px;">
+											<b>Date of Simulation:</b>
+										</p> <span style="font-size: 16px; vertical-align: center;"
+										th:text="${SimulationContent.createdDate}"></span>
+									</td>
+									<td class="topRowData">
+										<p style="height: 15px; padding-left: 5px;">
+											<b>Date Range:</b>
+										</p> <span style="font-size: 16px; vertical-align: center;"
+										th:text=" ${SimulationContent.startDate} +' - '+ ${SimulationContent.endDate}"></span>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<table style="height: 10px"></table>
+						<table style="width: 100%;" class="table">
+							<tr>
+								<th>Node</th>
+								<th>Previous Values</th>
+								<th>New Values</th>
+							</tr>
+							<tbody>
+								<tr
+									th:each="capacitySimulationUI,iStat : ${SimulationUIContent}">
+									<td
+										style="border-bottom: 1px solid #DADCE0; border-left: 1px solid #DADCE0;"
+										th:text="${capacitySimulationUI.nodeId}"></td>
+									<td style="border-bottom: 1px solid #DADCE0;">
+										<p
+											th:each="simu :  ${capacitySimulationUI.nodeCapacitySettings}">
+											<span th:text="${simu.capacityWeek}"></span> <span
+												th:text="${simu.capacity}"></span>
+										</p>
+									</td>
+									<td
+										style="border-bottom: 1px solid #DADCE0; border-right: 1px solid #DADCE0;">
+										<p
+											th:each="simu :  ${SimulationUIContent2[iStat.index].nodeCapacitySettings}">
+											<span th:text="${simu.capacityWeek}"></span> <span
+												th:text="${simu.capacity}"></span>
+										</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<table
+							style="width: 100%; border-spacing: 0px; border: 0px; box-sizing: 0px; padding: 2px;">
+							<td
+								style="padding: 0px 2px; border: 1px solid #DADCE0; border-radius: 5px;">
+								<div style="width: 100%; height: 120px; box-sizing: border-box;">
+									<table
+										style="width: 100%; height: 120px; border-spacing: 0px; box-sizing: border-box;"
+										cellpadding="0" cellspacing="0">
+										<tr>
+											<td style="padding: 29px 0px 29px 36px; max-width: 50%;">
+												<p>Thank You</p>
+												<p>Your NodeStar Administrator</p>
+											</td>
+											<td
+												style="padding: 24px 36px 23px 0px; text-align: right; max-width: 50%;"
+												align="right"><img src='' /></td>
+										</tr>
+									</table>
+								</div>
+							</td>
+						</table>
+			</table>
+		</div>
+	</form>
+</body>
+
+</html>

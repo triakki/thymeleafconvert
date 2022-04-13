@@ -156,6 +156,6 @@ public class WelcomeController {
         model.addAttribute("SimulationUIContent2COST", capacitySimulationUIsCOST);
 
 
-        return "welcome5";
+        return "welcome6";
     }
 }
